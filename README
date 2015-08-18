@@ -1,0 +1,19 @@
+This project contains scripts that define new studies for use with TD Ameritrade's ThinkOrSwim trading platform.
+
+The scripts include:
+
+* AccumulationDistributionBarCount - Indicates days of accumulation and distribution.
+
+* ATRLabel - Adds a label to a chart showing the historical Average True Range and the range of the current period.
+
+* ATRPercent - A graph showing the Average True Range over time as a percent of the current price.
+
+* ATRValueWithGapIndicator - A graph showing the Average True Range over time as a value.  Gaps up or down are highlighted in green or red, respectively.
+
+* BuyableGapUpIndicator - Adds a bubble indicating past buyable gaps-up.
+
+* UpDownVolumeRatio - Ratio of the volume on up days versus down days. 
+
+The complete source code is available on GitHub: 
+
+https://github.com/sjjohns/ThinkOrSwimStudies
