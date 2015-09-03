@@ -33,7 +33,7 @@ input AverageVolumeTimePeriod = 50; # calculate 50 day MA volume
 input BuyableGapUpMinVolumeRatio = 1.5;  # 150% of 50 day MA volume
 
 def AverageTrueRange = reference ATR(AverageTrueRangeTimePeriod, averageType = AverageType.SIMPLE);
-def OpeningPriceGap = open - close[1];
+def OpeningPriceGap = open - high[1];
 
 def AverageVolume = MovingAverage(AverageType.SIMPLE, volume, AverageVolumeTimePeriod );
 
