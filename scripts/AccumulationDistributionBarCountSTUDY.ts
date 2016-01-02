@@ -48,7 +48,7 @@ if (volume > AvgVolume) {
     if (PriceChange > 0) {  # positive close
         if (RelativeClosePercent >= 0.50) {  # close in upper half of range is accumulation
             BarCountData = 1;
-        } else if (RelativeClosePercent < 0.50) {  # close in lower half of range is stalling
+        } else if (RelativeClosePercent < 0.40) {  # close in lower 40% of range is stalling
             BarCountData = -1;
         } else {
             BarCountData = 0;
@@ -81,6 +81,6 @@ plot BarSumPlot = TotalSum(BarCountPlot);
 BarSumPlot.SetDefaultColor(Color.YELLOW);
 BarSumPlot.setLineWeight(2);
 
-# Plot of the reference line where the net a/d count is zero.
+# Plot of the reference line showing a net of zero a/d periods.
 plot ZeroLine = 0;
 ZeroLine.SetDefaultColor(Color.WHITE);
