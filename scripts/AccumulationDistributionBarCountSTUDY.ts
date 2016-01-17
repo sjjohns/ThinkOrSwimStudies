@@ -22,7 +22,12 @@
 # in May 2014.
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
 #
-# This study is designed to be applied with the aggregation period of days or weeks.
+# I've tweaked the logic and parameters based on my post-analysis. For example,
+# Only support days in the upper 20% of the daily price range count as +1. Mike
+# counts a support day in upper 60% of the range as +1.
+#
+# This study is designed to be applied with the aggregation period of days or weeks
+# but I find days to be more accurate.
 #
 declare lower;
 
@@ -35,24 +40,28 @@ def AvgVolume = Average(volume, AvgVolumePeriod);
 def BarCountData;
 def PriceChange;
 def PriceRange;
-def RelativeClosePercent;
+def CloseRelativeToPriceRange;
 
 if (volume > AvgVolume) {
     PriceChange = close - close[1];
     PriceRange = high - low;
-    RelativeClosePercent = (close - low) / PriceRange;
+    CloseRelativeToPriceRange = (close - low) / PriceRange;
 
     if (PriceChange > 0) {  # positive close
-        if (RelativeClosePercent >= 0.50) {  # close in upper half of range is accumulation
+        if (CloseRelativeToPriceRange >= 0.50) {  # close in upper half of range is accumulation
             BarCountData = 1;
-        } else {  # close in lower 50% of range is stalling
-            BarCountData = -1;
-        }
-    } else if (PriceChange < 0)  {   # negative close
-        if (RelativeClosePercent < 0.40) {  # close in lower 40% of range is distribution
+        } else if (CloseRelativeToPriceRange < 0.40) {  # close in lower 40% of range is stalling
             BarCountData = -1;
         } else {
-            BarCountData = 1;   # support day - down, but in upper 60% of bar
+            BarCountData = 0;
+        }
+    } else if (PriceChange < 0)  {   # negative close
+        if (CloseRelativeToPriceRange < 0.40) {  # close in lower 40% of range is distribution
+            BarCountData = -1;
+        } else if (CloseRelativeToPriceRange >= 0.80) {
+            BarCountData = 1;   # strong support day - Down, but close to the top of range
+        } else {
+            BarCountData = 0;   # support day - Down, but in middle of day's range
         }
     } else {
         BarCountData = 0;
@@ -60,7 +69,7 @@ if (volume > AvgVolume) {
 } else {
     PriceChange = 0;
     PriceRange = 0;
-    RelativeClosePercent = 0;
+    CloseRelativeToPriceRange = 0;
 
     BarCountData = 0;
 }
