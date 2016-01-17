@@ -22,10 +22,7 @@
 # in May 2014.
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
 #
-# I changed the negative close threshold from 40% (in Mike's presentation) to 
-# 38% per a new study from investors.com. 
-#
-# This study is designed to be applied with the aggregation period of days.
+# This study is designed to be applied with the aggregation period of days or weeks.
 #
 declare lower;
 
@@ -48,16 +45,14 @@ if (volume > AvgVolume) {
     if (PriceChange > 0) {  # positive close
         if (RelativeClosePercent >= 0.50) {  # close in upper half of range is accumulation
             BarCountData = 1;
-        } else if (RelativeClosePercent < 0.40) {  # close in lower 40% of range is stalling
+        } else {  # close in lower 50% of range is stalling
             BarCountData = -1;
-        } else {
-            BarCountData = 0;
         }
     } else if (PriceChange < 0)  {   # negative close
-        if (RelativeClosePercent < 0.38) {  # close in lower 38% of range is distribution
+        if (RelativeClosePercent < 0.40) {  # close in lower 40% of range is distribution
             BarCountData = -1;
         } else {
-            BarCountData = 0;   # ignore support day down, but in upper 62% of bar
+            BarCountData = 1;   # support day - down, but in upper 60% of bar
         }
     } else {
         BarCountData = 0;
