@@ -22,10 +22,6 @@
 # in May 2014.
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
 #
-# I've tweaked the logic and parameters based on my post-analysis. For example,
-# Only support days in the upper 20% of the daily price range count as +1. Mike
-# counts a support day in upper 60% of the range as +1.
-#
 # This study is designed to be applied with the aggregation period of days or weeks.
 #
 declare lower;
@@ -55,10 +51,8 @@ if (volume > AvgVolume) {
     } else if (PriceChange < 0)  {   # negative close
         if (CloseRelativeToPriceRange < 0.40) {  # close in lower 40% of range is distribution
             BarCountData = -1;
-        } else if (CloseRelativeToPriceRange >= 0.65) {
-            BarCountData = 1;   # strong support day - Down, but in the upper 35% of the day's range
         } else {
-            BarCountData = 0;   # support day - Down, but in middle of day's range
+            BarCountData = 1;   # ignore support day down, but in upper 60% of bar
         }
     } else {
         BarCountData = 0;
