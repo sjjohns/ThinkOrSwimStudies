@@ -15,12 +15,15 @@
 #
 
 #
-# AccumulationDistributionBarCount
+# AccumulationDistributionBarCountMS
 #
 # Counts the instances of accumulation and distribution in a stock over a 
 # period of time.  Based on Mike Scott's presentation at the IBD National Meetup
 # in May 2014.
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
+#
+# The parameters in this study match Mike's presentation. I've created a customized
+# version named AccumulationDistributionBarCount.
 #
 # This study is designed to be applied with the aggregation period of days or weeks.
 #
@@ -52,7 +55,7 @@ if (volume > AvgVolume) {
         if (CloseRelativeToPriceRange < 0.40) {  # close in lower 40% of range is distribution
             BarCountData = -1;
         } else {
-            BarCountData = 1;   # ignore support day down, but in upper 60% of bar
+            BarCountData = 1;   # support day, down but in upper 60% of bar
         }
     } else {
         BarCountData = 0;

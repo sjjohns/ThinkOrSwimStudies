@@ -23,8 +23,11 @@
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
 #
 # I've tweaked the logic and parameters based on my post-analysis. For example,
-# Only support days in the upper 20% of the daily price range count as +1. Mike
+# Only support days in the upper 35% of the daily price range count as +1. Mike
 # counts a support day in upper 60% of the range as +1.
+#
+# A version of this study with Mike's original parameters is in 
+# AccumulationDistributionBarCountMS.
 #
 # This study is designed to be applied with the aggregation period of days or weeks.
 #
