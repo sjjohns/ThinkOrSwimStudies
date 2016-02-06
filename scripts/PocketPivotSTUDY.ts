@@ -39,8 +39,8 @@
 #    removed the stddev logic since it didn't eliminate any obviously poor
 #    pivots.  I'm always looking at the volume on the previous 10 days.
 #
-# 2. I only count the pocket pivot if the stock closes in the 62% of the day's
-#    price range.  Up days that close lower in the range are considered
+# 2. I only count the pocket pivot if the stock closes in the upper 62% of the 
+#    day's price range.  Up days that close lower in the range are considered
 #    stalling.
 # 
 # 3. Gil and Chris say daily price closes prior to the pivot should be "tight" 
