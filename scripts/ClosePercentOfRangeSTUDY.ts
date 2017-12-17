@@ -21,6 +21,7 @@
 # or down at the open, the previous day's close is considered the low/high,
 # respectively. If the close percent of range is greater than or equals to
 # the threshold value, the bar is shown in Green instead of Red.
+#
 
 declare lower;
 input thresholdPercent = 50;
