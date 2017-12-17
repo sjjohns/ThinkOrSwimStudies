@@ -39,12 +39,16 @@ def AvgVolume = Average(volume, AvgVolumePeriod);
 # accumulation/distribution count
 def BarCountData;
 def PriceChange;
+def PriceHigh;
+def PriceLow;
 def PriceRange;
 def CloseRelativeToPriceRange;
 
 if (volume > AvgVolume) {
     PriceChange = close - close[1];
-    PriceRange = Max(high, close[1]) - Min(low, close[1]);
+    PriceHigh = max(high, close[1]);
+    PriceLow = min(low, close[1]);
+    PriceRange = PriceHigh - PriceLow;
     CloseRelativeToPriceRange = (close - low) / PriceRange;
 
     if (PriceChange > 0) {  # positive close
@@ -64,6 +68,8 @@ if (volume > AvgVolume) {
     }
 } else {
     PriceChange = 0;
+    PriceHigh = 0;
+    PriceLow = 0;
     PriceRange = 0;
     CloseRelativeToPriceRange = 0;
 
