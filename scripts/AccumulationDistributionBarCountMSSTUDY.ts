@@ -69,13 +69,14 @@ if (volume > AvgVolume) {
 }
 
 # Plot the tick marks showing individual instances of accumulation or distribution
-plot BarCountPlot = BarCountData;
+plot BarCountPlot = BarCountData * 100;
 BarCountPlot.setPaintingStrategy(PaintingStrategy.HISTOGRAM);
 def LineColor = if(BarCountData > 0.0, 16, if(BarCountData < 0.0, 5, 17));
 BarCountPlot.AssignValueColor(getColor(LineColor));
+BarCountPlot.HideTitle();
 
 # Plot of the sum of a/d instances since the beginning of the chart
-plot BarSumPlot = TotalSum(BarCountPlot);
+plot BarSumPlot = TotalSum(BarCountData);
 BarSumPlot.SetDefaultColor(Color.YELLOW);
 BarSumPlot.setLineWeight(2);
 
