@@ -22,9 +22,7 @@
 # in May 2014.
 # http://ibdtv.investors.com/national-meetup-events/699580-.aspx
 #
-# I've tweaked the logic and parameters based on my post-analysis. For example,
-# Only support days in the upper 35% of the daily price range count as +1. Mike
-# counts a support day in upper 60% of the range as +1.
+# I've tweaked the logic and parameters based on additional research.
 #
 # A version of this study with Mike's original parameters is in 
 # AccumulationDistributionBarCountMS.
@@ -46,7 +44,7 @@ def CloseRelativeToPriceRange;
 
 if (volume > AvgVolume) {
     PriceChange = close - close[1];
-    PriceRange = high - low;
+    PriceRange = Max(high, close[1]) - Min(low, close[1]);
     CloseRelativeToPriceRange = (close - low) / PriceRange;
 
     if (PriceChange > 0) {  # positive close
@@ -56,12 +54,10 @@ if (volume > AvgVolume) {
             BarCountData = -1;
         }
     } else if (PriceChange < 0)  {   # negative close
-        if (CloseRelativeToPriceRange < 0.40) {  # close in lower 40% of range is distribution
+        if (CloseRelativeToPriceRange < 0.38) {  # close in lower 38% of range is distribution
             BarCountData = -1;
-        } else if (CloseRelativeToPriceRange >= 0.65) {
-            BarCountData = 1;   # strong support day - Down, but in the upper 35% of the day's range
         } else {
-            BarCountData = 0;   # support day - Down, but in middle of day's range
+            BarCountData = 1;   # support day, down but in upper 62% of bar
         }
     } else {
         BarCountData = 0;
@@ -75,13 +71,14 @@ if (volume > AvgVolume) {
 }
 
 # Plot the tick marks showing individual instances of accumulation or distribution
-plot BarCountPlot = BarCountData;
+plot BarCountPlot = BarCountData * 100;
 BarCountPlot.setPaintingStrategy(PaintingStrategy.HISTOGRAM);
 def LineColor = if(BarCountData > 0.0, 16, if(BarCountData < 0.0, 5, 17));
 BarCountPlot.AssignValueColor(getColor(LineColor));
+BarCountPlot.HideTitle();
 
 # Plot of the sum of a/d instances since the beginning of the chart
-plot BarSumPlot = TotalSum(BarCountPlot);
+plot BarSumPlot = TotalSum(BarCountData);
 BarSumPlot.SetDefaultColor(Color.YELLOW);
 BarSumPlot.setLineWeight(2);
 
