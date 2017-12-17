@@ -49,7 +49,7 @@ if (volume > AvgVolume) {
     PriceHigh = max(high, close[1]);
     PriceLow = min(low, close[1]);
     PriceRange = PriceHigh - PriceLow;
-    CloseRelativeToPriceRange = (close - low) / PriceRange;
+    CloseRelativeToPriceRange = (close - PriceLow) / PriceRange;
 
     if (PriceChange > 0) {  # positive close
         if (CloseRelativeToPriceRange >= 0.50) {  # close in upper half of range is accumulation
