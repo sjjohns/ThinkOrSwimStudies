@@ -15,21 +15,22 @@
 #
 
 #
-# ATRValueWithGapIndicator
+# ATRPercentWithGapIndicator
 #
 # Calculates the ATR and shows an indicator if there was a significant 
-# gap up or down at the open.  A gap up may be buyable if the volume >= 150%
-# of the average volume over the last 50 sessions.
+# gap up or down at the open.  A gap up may be buyable if the opening gap up
+# is > 75% of 40 period ATR and the volume >= 150% of the average volume over
+# the last 40 sessions.
 #
 declare lower;
 
 input ATRLength = 40;
-input MinimumPercentGap = 0.75;
+input MinimumPercentGap = 75;  # percent of average true range required to be a gap 
 
 def ATRPercent = Average(TrueRange(high, close, low), ATRLength) / close * 100;
 def OpenPriceGap = open - close[1];
-def GapUpEvent = OpenPriceGap >= MinimumPercentGap * ATRPercent;
-def GapDownEvent = OpenPriceGap <= -MinimumPercentGap * ATRPercent;
+def GapUpEvent = OpenPriceGap >= ATRPercent * MinimumPercentGap / 100;
+def GapDownEvent = OpenPriceGap <= ATRPercent * -MinimumPercentGap / 100;
 
 plot Display = Round(ATRPercent, 2);
 

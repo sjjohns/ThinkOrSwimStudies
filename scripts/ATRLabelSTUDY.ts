@@ -15,7 +15,7 @@
 #
 
 #
-# ATR_Label
+# ATRLabel
 #
 # Displays Average True Range over the last 40 periods and the current period
 #
@@ -26,6 +26,6 @@ def ATRValue = Average(TrueRange(high,  close,  low),  ATRLength);
 def ATRPercent = ATRValue / close * 100;
 
 # current period range
-def ATRLastBar = Average(TrueRange(high,  close,  low),  1);
+def ATRLastBar = TrueRange(high,  close,  low);
 
-AddLabel(yes, ATRLength + " Period ATR = $" + Round(ATRValue, 2) + " (" + Round(ATRPercent, 2) + "%), Current Period ATR = $" + Round(ATRLastBar, 2) + " (" + Round(ATRLastBar / close * 100, 2) + "%)", CreateColor(153, 153, 0));
+AddLabel(yes, ATRLength + " Period ATR = $" + Round(ATRValue, 2) + " (" + Round(ATRPercent, 2) + "%), Current Period Range = $" + Round(ATRLastBar, 2) + " (" + Round(ATRLastBar / close * 100, 2) + "%)", CreateColor(153, 153, 0));
