@@ -28,15 +28,16 @@
 # based on the current time and volume so far.
 #
 input AverageTrueRangeTimePeriod = 40;
-input BuyableGapPercentOfATR = 0.75;
+input BuyableGapPercentOfATR = 75; # percent of average true range to qualify for as a gap
 input AverageVolumeTimePeriod = 50; # calculate 50 day MA volume
-input BuyableGapUpMinVolumeRatio = 1.5;  # 150% of 50 day MA volume
+input BuyableGapUpMinVolumePercent = 150;  # 150% of 50 day MA volume
 
 def AverageTrueRange = reference ATR(AverageTrueRangeTimePeriod, averageType = AverageType.SIMPLE);
 def OpeningPriceGap = open - high[1];
 
 def AverageVolume = MovingAverage(AverageType.SIMPLE, volume, AverageVolumeTimePeriod );
 
-def GapUp = (OpeningPriceGap >= BuyableGapPercentOfATR * AverageTrueRange) and (volume > AverageVolume * BuyableGapUpMinVolumeRatio);
+def GapUp = (OpeningPriceGap >= AverageTrueRange * BuyableGapPercentOfATR / 100) and (volume > AverageVolume * BuyableGapUpMinVolumePercent / 100);
 
 AddChartBubble(GapUp > 0, low, “GU", Color.GREEN, no);
+
