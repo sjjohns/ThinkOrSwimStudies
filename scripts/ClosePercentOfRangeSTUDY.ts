@@ -17,14 +17,13 @@
 #
 # ClosePercentOfRange
 # 
-# Calculates where in the day's range the stock closed. For days with a gap up
-# or down at the open, the previous day's close is considered the low/high,
-# respectively. If the close percent of range is greater than or equals to
+# Calculates where in the time period range the stock closed. For periods with
+# a gap up or down at the open, the previous period's close is considered the
+# low/high, respectively. If the close percent of range is greater than or equal to
 # the threshold value, the bar is shown in Green instead of Red.
 #
-
 declare lower;
-input thresholdPercent = 50;
+input thresholdPercent = 38; 
 
 def todaysHigh = Max(high, close[1]);
 def todaysLow = Min(low, close[1]);
