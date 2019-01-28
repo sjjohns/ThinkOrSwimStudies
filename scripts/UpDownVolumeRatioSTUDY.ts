@@ -19,8 +19,7 @@
 #
 # Ratio of the volume on up days versus down days. Higher numbers indicate
 # more accumulation by large investors which is a positive.  Low numbers 
-# indicate distribution.  Generally, don't open a position if the current
-# ratio is less than 1.0.
+# indicate distribution. 
 #
 input Period = 50;
 input MinimumUDVolumeForBuy = 1.00;

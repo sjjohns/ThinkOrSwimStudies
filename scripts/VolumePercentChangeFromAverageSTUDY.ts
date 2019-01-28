@@ -21,7 +21,6 @@
 # over the last X bars. Volume equal to or higher than the threshold is shown
 # in yellow. 
 #
-
 declare lower;
 declare zerobase;
 
