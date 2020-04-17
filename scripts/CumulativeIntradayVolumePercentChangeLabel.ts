@@ -48,9 +48,19 @@ def prevNewDayIndex = if newDay then
 # number of bars in the prior day
 def indexOffset = prevNewDayIndex - newDayIndex + 1;
 
-# volume today and yesterday
-def todayVol = close(symbol=symbol);
-def yesterdayVol = GetValue(close(symbol=symbol), indexOffset);
+# volume today
+def tempTodayVol = close(symbol = symbol);
+def todayVol = if IsNAN(tempTodayVol) then
+                    todayVol[1]
+                 else
+                    tempTodayVol;
+
+# volume yesterday
+def tempYesterdayVol = GetValue(close(symbol=symbol), indexOffset);
+def yesterdayVol = if IsNAN(tempYesterdayVol) then
+                     yesterdayVol[1]
+                  else
+                     tempYesterdayVol;
 
 def percentChange = (todayVol / yesterdayVol - 1) * 100;                    
 
