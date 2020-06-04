@@ -20,13 +20,11 @@ The scripts include:
 
 * ClosePercentOfRange - Displays a bar chart of the close price relative to the period's price range.
 
+* CoppockIndicator - Displays a chart of Coppock Indicator with bubbles at each buy signal.
+
 * CumulativeIntradayVolumePercentChange - Displays a chart of the percent change in volume since 1 market session ago. Intended to be used with volume symbols like $TVOLC/Q (NASDAQ Composite Total Volume) or $TVOLC (NYSE Composite Total volume).
 
 * CumulativeIntradayVolumePercentChangeLabel - Same as CumulativeIntradayVolumePercentChange except instead of a chart, the current value is written to label.
-
-* PossibleAccumulationDayIndicator - Adds an indicator when the current period price gain is greater than or equal to the minimum value for an Accumulation Day
-
-* CoppockIndicator - Displays a chart of Coppock Indicator with bubbles at each buy signal.
 
 * DailyEMA - Displays a chart of the Exponential Moving Average of the day's closing price.
 
