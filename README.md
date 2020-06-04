@@ -42,6 +42,6 @@ The complete source code is available on GitHub:
 
 https://github.com/sjjohns/ThinkOrSwimStudies
 
-## DISCLAIMER
+## Disclaimer
 
 I (Scott Johnson) am not a certified financial advisor. I am not recommending any financial instruments to buy or sell. This project (ThinkOrSwimStudies) is for informational purposes only. It is not investment advice. Use this project at your own risk. All investing has a substantial risk of big losses.
