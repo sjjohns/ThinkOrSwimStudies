@@ -30,11 +30,15 @@ The scripts include:
 
 * EarningsPerShare - Displays a chart of a stock's Earnings Per Share.
 
+* ExchangeListedNetHighLow - Shows the number of new 52-week highs minus new 52-week lows by day for the selected exchange.
+
 * MinorHighLowIndicator - Adds a bubble when the day's high/low are the highest high/lowest low the past/future 9 sessions.
 
 * PocketPivot - Adds a bubble on the daily chart when the stock had a Pocket Pivot buy point.
 
 * RelativeStrengthWithNewHighIndicators - Displays a chart comparing price performance between two symbols. Useful for comparing one symbol to an index, for example. New High indicators are dots when relative strength is currently making a new high and relative strength made a new high before price.
+
+* TwelveOfFifteenUp - Adds a wedge on top of a candle where closing price was higher than the previous candle for at least 12 of last 15 candles.
 
 * UpDownVolumeRatio - Displays a chart of the ratio of the volume on up days versus down days. 
 
