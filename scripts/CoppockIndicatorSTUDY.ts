@@ -17,11 +17,11 @@
 #
 # CoppockIndicator
 #
-# Charts the Coppock Indicator described here: 
+# Charts the Coppock Indicator described here:
 #             https://en.wikipedia.org/wiki/Coppock_curve
 #
 # The Coppock can be used (along with other indicators like the Eureka Signal
-# and IBD6000 %Es) to identify points where the stock market trend changes 
+# and IBD6000 %Es) to identify points where the stock market trend changes
 # from down to up. The Coppock does not identify the beginning of downtrends.
 #
 # This study is designed to be applied to a major market index (e.g., SPX or
@@ -50,6 +50,8 @@ Coppock.HideBubble();
 plot ZeroLine = 0;
 
 ZeroLine.SetDefaultColor(color.white);
+ZeroLine.SetLineWeight(1);
 ZeroLine.HideBubble();
+ZeroLine.HideTitle();
 
 AddChartBubble(Coppock[1] < 0 and Coppock > Coppock[1] and Coppock[1] < Coppock[2], Coppock, "Buy", Color.CYAN, no);
