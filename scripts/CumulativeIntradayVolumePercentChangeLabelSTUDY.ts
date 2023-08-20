@@ -65,5 +65,5 @@ def yesterdayVol = if IsNAN(tempYesterdayVol) then
 def percentChange = (todayVol / yesterdayVol - 1) * 100;                    
 
 # % change label
-AddLabel(1, "Today's Volume Percent Change (" + symbol + "): " + Round(percentChange,2) + "%", Color.WHITE);
+AddLabel(1, "Today's Volume % Chg (" + symbol + "): " + Round(percentChange,2) + "%", Color.WHITE);
 
