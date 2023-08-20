@@ -52,5 +52,6 @@ MinPctGainPlot.SetLineWeight(3);
 plot AvgGainPlot = AvgGainPct;
 AvgGainPlot.AssignValueColor(Color.YELLOW);
 AvgGainPlot.SetLineWeight(2);
-AvgGainPlot.setHiding(if ShowAverageGainPlot == 1 then 0 else 1);
+AvgGainPlot.Hide(); # clutters chart so hide by default
+
 
