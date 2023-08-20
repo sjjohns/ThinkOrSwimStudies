@@ -38,4 +38,4 @@ def DidBreakSMAOnHighVolume = if (close<Todays50DaySMA && volume > AverageVolume
 
 def sell = if (DidViolateSMA or DidBreakSMAOnHighVolume) then 1 else 0;
 
-AddOrder(OrderType.SELL_TO_CLOSE, sell equals 1, tickColor = GetColor(1), arrowColor = GetColor(1), price = low[1], name = "Sell");
+AddOrder(OrderType.SELL_AUTO, sell equals 1, tickColor = GetColor(1), arrowColor = GetColor(1), price = low[1], name = "Sell");

@@ -21,8 +21,6 @@
 # Unfortunately I have to copy the entire logic here rather than just referencing
 # the study.  See PocketPivotSTUDY.ts for a description of the study.
 #
-declare hide_on_intraday;
-
 input Period = 11;  # normal volume lookback period (today + 10 prior days)
 input MaximumDistanceFrom10DaySMAPercent = 1.4;  # Price on pivot day should be near the 10-day SMA.  MAX = 1.6 Per FOSL1, 1.23 per PII, but RAX not extended at 1.61 and 1.64.
 
@@ -57,5 +55,6 @@ def IsPriceInTheProperRange = if (IsCloseInUpperHalfOfRange && IsPriceNear10DayS
 # add a chart bubble if then PP criteria are met
 def buy = if (IsVolumeGreaterHighestDownVolume && IsPriceInTheProperRange) then 1 else 0;
 
-AddOrder(OrderType.BUY_TO_OPEN, buy equals 1, tickColor = GetColor(0), arrowColor = GetColor(0), price = close, name = "Buy");
+AddOrder(OrderType.BUY_AUTO, buy equals 1, tickColor = GetColor(0), arrowColor = GetColor(0), price = close, name = "Buy");
+
 
