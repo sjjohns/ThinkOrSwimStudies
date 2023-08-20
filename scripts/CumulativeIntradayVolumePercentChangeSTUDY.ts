@@ -17,7 +17,7 @@
 #
 # CumulativeIntradayVolumePercentChange
 #
-# Displays a chart of the percent change in close price since 1 market session ago. 
+# Displays a chart with the percent change in cumulative intraday volume. 
 #
 # The chart period should be less than one day.
 #
