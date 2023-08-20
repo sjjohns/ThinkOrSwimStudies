@@ -46,13 +46,14 @@ rsPlot.HideTitle();
 # RS New High Before Price Plot
 #
 
+def lastBar = !IsNaN(close) && IsNaN(close[-1]);
 def highestRS = Highest(rs, barsToLookBackForHigh);
 def todayIsNewHighRS = if rs >= highestRS then rs else -1;
 
 def highestClosePrice = Highest(close, barsToLookBackForHigh);
 def todayIsNewHighClosePrice = if close >= highestClosePrice then rs else -1;
 
-def rsNewHighBeforePrice = todayIsNewHighRS > 0 && todayIsNewHighClosePrice == -1;
+def rsNewHighBeforePrice = !lastBar && todayIsNewHighRS > 0 && todayIsNewHighClosePrice == -1;
 
 plot rsNewHighBeforePricePlot = if (rsNewHighBeforePrice, rs * 1, Double.NAN);
 rsNewHighBeforePricePlot.setPaintingStrategy(PaintingStrategy.Points);
@@ -65,7 +66,6 @@ rsNewHighBeforePricePlot.HideTitle();
 # Current RS at New High Plot
 #
 
-def lastBar = !IsNaN(close) && IsNaN(close[-1]);
 def showBlueIndicator = if (lastBar && todayIsNewHighRS > 0, rs * 1.0001, Double.NAN);
 
 plot currentRSAtNewHigh = showBlueIndicator;
