@@ -17,21 +17,16 @@
 #
 # ClosePercentOfRange
 # 
-# Calculates where in the time period range the stock closed. For periods with
-# a gap up or down at the open, the previous period's close is considered the
-# low/high, respectively. If the close percent of range is greater than or equal to
-# the threshold value, the bar is shown in Green instead of Red.
+# Calculates where in the time period range the stock closed. This study does
+# not consider prior close as with True Range. If the close percent of range
+# is greater than or equal to the threshold value, the bar is shown in Green
+# instead of Red.
 #
 declare lower;
-input thresholdPercent = 38; 
+input thresholdPercent = 38;
 
-def todaysHigh = Max(high, close[1]);
-def todaysLow = Min(low, close[1]);
-def todaysRange = todaysHigh - todaysLow;
-def todaysPctRange = (close - todaysLow) / (todaysHigh - todaysLow) * 100;
+def todaysClosePctRange = (close - low) / (high - low) * 100;
 
-plot ClosePctOfRange = todaysPctRange;
-
-ClosePctOfRange.AssignValueColor(if todaysPctRange >= thresholdPercent then Color.GREEN else Color.RED);
-
+plot ClosePctOfRange = todaysClosePctRange;
+ClosePctOfRange.AssignValueColor(if todaysClosePctRange >= thresholdPercent then Color.GREEN else Color.RED);
 ClosePctOfRange.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
