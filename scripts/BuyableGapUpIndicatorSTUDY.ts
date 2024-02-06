@@ -39,5 +39,5 @@ def AverageVolume = MovingAverage(AverageType.SIMPLE, volume, AverageVolumeTimeP
 
 def GapUp = (OpeningPriceGap >= AverageTrueRange * BuyableGapPercentOfATR / 100) and (volume > AverageVolume * BuyableGapUpMinVolumePercent / 100);
 
-AddChartBubble(GapUp > 0, low, “GU", Color.GREEN, no);
+AddChartBubble(GapUp > 0, low, “G", Color.GREEN, no);
 
