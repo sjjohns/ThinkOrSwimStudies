@@ -12,9 +12,9 @@ The scripts include:
 
 * ATRLabel - Adds a label to a chart showing the average true range and current period range. 
 
-* ATRPercent - Displays a chart showing the Average True Range over time as a percent of the current price.
+* ATRPercent - Displays a chart showing the Average True Range over time as a percent of price.
 
-* ATRPercentWithGapIndicator - Displays a chart showing the Average True Range over time as a percent of the current price.  Gaps up or down are highlighted in green or red, respectively.
+* ATRWithGapUpIndicator - Displays a chart showing the Average True Range over time as a percent of price.  Large gaps up are highlighted in green.
 
 * BuyableGapUpIndicator - Adds a chart bubble indicating past buyable gaps-up.
 
