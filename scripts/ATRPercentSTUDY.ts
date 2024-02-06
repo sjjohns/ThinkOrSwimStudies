@@ -22,11 +22,12 @@
 declare lower;
 
 input ATRLength = 40;
-input ATRMinBuyable = 1.90;  # minimum ATR for stock to be buyable
+input ATRPctMinBuyable = 1.90;  # minimum ATR for stock to be buyable
 
-plot ATR = Round(Average(TrueRange(high, close, low), ATRLength) / close * 100,2);
-ATR.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
-ATR.AssignValueColor(if ATR >= ATRMinBuyable then Color.GREEN else Color.RED);
+plot ATRPct = Round(Average(TrueRange(high, close, low)/close[1], ATRLength) * 100,2);
+ATRPct.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+ATRPct.AssignValueColor(if ATRPct >= ATRPctMinBuyable then Color.GREEN else Color.RED);
 
-plot minBuyableLine = ATRMinBuyable;
+plot minBuyableLine = ATRPctMinBuyable;
 minBuyableLine.SetDefaultColor(Color.WHITE); 
+
